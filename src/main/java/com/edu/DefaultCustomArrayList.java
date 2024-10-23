@@ -10,7 +10,10 @@ public class DefaultCustomArrayList<E> implements CustomArrayList<E> {
     private int size;
 
     public DefaultCustomArrayList() {
-        this.array = (E[]) new Object[DEFAULT_CAPACITY];
+        // Используем аннотацию для подавления предупреждения о небезопасном приведении типов
+        @SuppressWarnings("unchecked")
+        E[] tempArray = (E[]) new Object[DEFAULT_CAPACITY];
+        this.array = tempArray;
         this.size = 0;
     }
 
@@ -85,7 +88,7 @@ public class DefaultCustomArrayList<E> implements CustomArrayList<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new Iterator<E>() {
+        return new Iterator<>() {
             private int currentIndex = 0;
 
             @Override
