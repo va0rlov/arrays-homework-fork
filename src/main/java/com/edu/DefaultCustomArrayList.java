@@ -2,6 +2,7 @@ package com.edu;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class DefaultCustomArrayList<E> implements CustomArrayList<E> {
 
@@ -98,6 +99,9 @@ public class DefaultCustomArrayList<E> implements CustomArrayList<E> {
 
             @Override
             public E next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException("No more elements in the iterator");
+                }
                 return array[currentIndex++];
             }
 
